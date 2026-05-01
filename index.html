@@ -382,6 +382,55 @@
         font-weight: 800;
       }
 
+      .visual-strip {
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+        padding: 18px 0;
+      }
+
+      .visual-strip-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .visual-tile {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        min-height: 168px;
+        margin: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #d8e4d4;
+      }
+
+      .visual-tile::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(180deg, rgba(9, 28, 20, 0.04), rgba(9, 28, 20, 0.74));
+      }
+
+      .visual-tile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .visual-tile figcaption {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        z-index: 1;
+        border-radius: 6px;
+        background: rgba(0, 105, 54, 0.9);
+        color: var(--paper);
+        padding: 9px 10px;
+        font-size: 0.9rem;
+        font-weight: 900;
+      }
+
       .proof-band {
         border-bottom: 1px solid var(--line);
         background: var(--fresh);
@@ -598,11 +647,33 @@
       }
 
       .service-card {
-        padding: 24px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        overflow: hidden;
+      }
+
+      .service-card-image {
+        aspect-ratio: 16 / 10;
+        margin: 0;
+        overflow: hidden;
+        background: #d8e4d4;
+      }
+
+      .service-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .service-card-body {
+        display: flex;
+        flex-direction: column;
+        padding: 22px 24px 24px;
       }
 
       .service-card .service-tag {
         display: inline-flex;
+        width: fit-content;
         margin-bottom: 18px;
         border-radius: 6px;
         background: var(--fresh);
@@ -614,6 +685,10 @@
 
       .service-card p {
         margin-bottom: 18px;
+      }
+
+      .service-card .text-link {
+        margin-top: auto;
       }
 
       .text-link {
@@ -986,13 +1061,31 @@
           width: 100%;
         }
 
-        .proof-grid,
         .service-grid,
         .testimonials-grid,
         .gallery-grid,
         .area-list,
         .form-grid {
           grid-template-columns: 1fr;
+        }
+
+        .visual-strip {
+          padding: 12px 0 14px;
+        }
+
+        .visual-strip-grid {
+          display: flex;
+          gap: 12px;
+          overflow-x: auto;
+          padding: 0 0 4px;
+          scroll-snap-type: x mandatory;
+          scrollbar-width: thin;
+        }
+
+        .visual-tile {
+          flex: 0 0 82%;
+          min-height: 190px;
+          scroll-snap-align: start;
         }
 
         .section {
@@ -1114,10 +1207,13 @@
         }
 
         .lead-form,
-        .service-card,
         .testimonial,
         .contact-panel,
         .faq details {
+          padding: 18px;
+        }
+
+        .service-card-body {
           padding: 18px;
         }
 
@@ -1196,6 +1292,44 @@
             <li>Free Estimates</li>
             <li>Same-Day Stump Grinding</li>
           </ul>
+        </div>
+      </section>
+
+      <section class="visual-strip" aria-label="Tree service work examples">
+        <div class="container visual-strip-grid">
+          <figure class="visual-tile">
+            <img
+              src="https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=900&q=82"
+              alt="Tree crew trimming branches over a brick home"
+              width="900"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Trimming near homes</figcaption>
+          </figure>
+          <figure class="visual-tile">
+            <img
+              src="https://images.unsplash.com/photo-1754321871548-61bdbc6f1506?auto=format&fit=crop&w=900&q=82"
+              alt="Arborist ladder setup beneath large oak trees"
+              width="900"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Large oak pruning</figcaption>
+          </figure>
+          <figure class="visual-tile">
+            <img
+              src="https://images.unsplash.com/photo-1754321895426-68b04ba453e3?auto=format&fit=crop&w=900&q=82"
+              alt="Worker operating a stump grinder in a residential yard"
+              width="900"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Stump grinding</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -1298,40 +1432,112 @@
 
           <div class="service-grid">
             <article class="service-card">
-              <span class="service-tag">Tree Removal</span>
-              <h3>Hazardous and unwanted tree removal</h3>
-              <p>Careful removal for dead, leaning, storm-damaged, crowded, or unsafe trees near homes and structures.</p>
-              <a class="text-link" href="#estimate">Request removal pricing</a>
+              <figure class="service-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1754321860056-ca7254d5e7ac?auto=format&fit=crop&w=900&q=82"
+                  alt="Tree removal crew working safely near a home"
+                  width="900"
+                  height="563"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="service-card-body">
+                <span class="service-tag">Tree Removal</span>
+                <h3>Hazardous and unwanted tree removal</h3>
+                <p>Careful removal for dead, leaning, storm-damaged, crowded, or unsafe trees near homes and structures.</p>
+                <a class="text-link" href="#estimate">Request removal pricing</a>
+              </div>
             </article>
             <article class="service-card">
-              <span class="service-tag">Trimming</span>
-              <h3>Tree trimming and pruning</h3>
-              <p>Improve curb appeal, reduce limb risk, protect rooflines, and support healthy growth with proper cuts.</p>
-              <a class="text-link" href="#estimate">Schedule trimming</a>
+              <figure class="service-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=900&q=82"
+                  alt="Tree branches being trimmed above a residential roofline"
+                  width="900"
+                  height="563"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="service-card-body">
+                <span class="service-tag">Trimming</span>
+                <h3>Tree trimming and pruning</h3>
+                <p>Improve curb appeal, reduce limb risk, protect rooflines, and support healthy growth with proper cuts.</p>
+                <a class="text-link" href="#estimate">Schedule trimming</a>
+              </div>
             </article>
             <article class="service-card">
-              <span class="service-tag">Stump Grinding</span>
-              <h3>Same-day stump grinding</h3>
-              <p>Remove tripping hazards and make your yard usable again with efficient grinding and cleanup.</p>
-              <a class="text-link" href="#estimate">Ask about availability</a>
+              <figure class="service-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1754321895426-68b04ba453e3?auto=format&fit=crop&w=900&q=82"
+                  alt="Stump grinder clearing a stump in a residential yard"
+                  width="900"
+                  height="563"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="service-card-body">
+                <span class="service-tag">Stump Grinding</span>
+                <h3>Same-day stump grinding</h3>
+                <p>Remove tripping hazards and make your yard usable again with efficient grinding and cleanup.</p>
+                <a class="text-link" href="#estimate">Ask about availability</a>
+              </div>
             </article>
             <article class="service-card">
-              <span class="service-tag">Emergency</span>
-              <h3>24/7 storm cleanup</h3>
-              <p>Fast response for downed trees, broken limbs, blocked driveways, and urgent property hazards.</p>
-              <a class="text-link" href="tel:+12149447415">Call for emergency service</a>
+              <figure class="service-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1754321860056-ca7254d5e7ac?auto=format&fit=crop&w=900&q=82"
+                  alt="Crew preparing to clear a hazardous tree"
+                  width="900"
+                  height="563"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="service-card-body">
+                <span class="service-tag">Emergency</span>
+                <h3>24/7 storm cleanup</h3>
+                <p>Fast response for downed trees, broken limbs, blocked driveways, and urgent property hazards.</p>
+                <a class="text-link" href="tel:+12149447415">Call for emergency service</a>
+              </div>
             </article>
             <article class="service-card">
-              <span class="service-tag">Commercial</span>
-              <h3>Commercial tree care</h3>
-              <p>Responsive service for property managers, HOAs, retail sites, offices, and multi-property portfolios.</p>
-              <a class="text-link" href="#estimate">Start a commercial quote</a>
+              <figure class="service-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1754321871548-61bdbc6f1506?auto=format&fit=crop&w=900&q=82"
+                  alt="Tree care equipment staged below large trees"
+                  width="900"
+                  height="563"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="service-card-body">
+                <span class="service-tag">Commercial</span>
+                <h3>Commercial tree care</h3>
+                <p>Responsive service for property managers, HOAs, retail sites, offices, and multi-property portfolios.</p>
+                <a class="text-link" href="#estimate">Start a commercial quote</a>
+              </div>
             </article>
             <article class="service-card">
-              <span class="service-tag">Cleanup</span>
-              <h3>Haul-off and site cleanup</h3>
-              <p>Crews leave your property clean, secure, and ready to use after trimming, removal, or storm work.</p>
-              <a class="text-link" href="#estimate">Get cleanup included</a>
+              <figure class="service-card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=900&q=82"
+                  alt="Tree service cleanup work after trimming"
+                  width="900"
+                  height="563"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="service-card-body">
+                <span class="service-tag">Cleanup</span>
+                <h3>Haul-off and site cleanup</h3>
+                <p>Crews leave your property clean, secure, and ready to use after trimming, removal, or storm work.</p>
+                <a class="text-link" href="#estimate">Get cleanup included</a>
+              </div>
             </article>
           </div>
         </div>
