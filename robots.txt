@@ -1,5 +1,2 @@
 User-agent: *
 Allow: /
-
-# Add a production sitemap after the final domain is connected:
-# Sitemap: https://your-domain.com/sitemap.xml
