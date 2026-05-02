@@ -186,6 +186,23 @@
         min-height: 78px;
       }
 
+      .header-cta {
+        display: inline-flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+      }
+
+      .language-note {
+        color: var(--clay);
+        font-size: 0.78rem;
+        font-weight: 900;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+      }
+
       .brand {
         display: inline-flex;
         align-items: center;
@@ -590,6 +607,9 @@
       }
 
       .form-note {
+        display: flex;
+        align-items: center;
+        min-height: 48px;
         margin: 0;
         color: var(--muted);
         font-size: 0.92rem;
@@ -1048,7 +1068,7 @@
           font-size: 1.05rem;
         }
 
-        .header-inner > .button {
+        .header-cta {
           display: none;
         }
 
@@ -1236,7 +1256,6 @@
       <div class="container">
         <div><strong>24/7 Service</strong> across Dallas / Fort Worth Metroplex</div>
         <div class="top-links">
-          <span>Hablamos Español</span>
           <span>VA & Military Discount up to 10%</span>
         </div>
       </div>
@@ -1261,7 +1280,10 @@
           <a href="#faq">FAQ</a>
         </nav>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-        <a class="button button-dark" href="tel:+12149447415">Call (214) 944-7415</a>
+        <div class="header-cta">
+          <a class="button button-dark" href="tel:+12149447415">Call (214) 944-7415</a>
+          <span class="language-note">Hablamos Español</span>
+        </div>
       </div>
     </header>
 
