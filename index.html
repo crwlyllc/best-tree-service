@@ -852,6 +852,43 @@
         font-weight: 850;
       }
 
+      .video-gallery {
+        margin-top: 28px;
+      }
+
+      .video-gallery h3 {
+        margin-bottom: 14px;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .video-card {
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+      }
+
+      .video-card video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        max-height: 520px;
+        background: var(--steel);
+        object-fit: cover;
+      }
+
+      .video-card figcaption {
+        padding: 12px 14px;
+        color: var(--steel);
+        font-weight: 850;
+      }
+
       .testimonials-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1040,7 +1077,8 @@
           grid-template-columns: 1fr;
         }
 
-        .gallery-grid {
+        .gallery-grid,
+        .video-grid {
           grid-template-columns: 1fr 1fr;
         }
 
@@ -1115,6 +1153,7 @@
         .service-detail-grid,
         .testimonials-grid,
         .gallery-grid,
+        .video-grid,
         .area-list,
         .service-menu,
         .form-grid {
@@ -1344,8 +1383,8 @@
         <div class="container visual-strip-grid">
           <figure class="visual-tile">
             <img
-              src="https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=900&q=82"
-              alt="Tree crew trimming branches over a brick home"
+              src="assets/trimming-near-homes.webp"
+              alt="Tree climber trimming a large trunk beside a home"
               width="900"
               height="675"
               loading="lazy"
@@ -1355,8 +1394,8 @@
           </figure>
           <figure class="visual-tile">
             <img
-              src="https://images.unsplash.com/photo-1754321871548-61bdbc6f1506?auto=format&fit=crop&w=900&q=82"
-              alt="Arborist ladder setup beneath large oak trees"
+              src="assets/large-oak-pruning.webp"
+              alt="Pruned tree with raised canopy in a residential neighborhood"
               width="900"
               height="675"
               loading="lazy"
@@ -1502,8 +1541,8 @@
             <article class="service-card">
               <figure class="service-card-image">
                 <img
-                  src="https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=900&q=82"
-                  alt="Tree branches being trimmed above a residential roofline"
+                  src="assets/trimming-near-homes.webp"
+                  alt="Tree climber trimming a large trunk beside a home"
                   width="900"
                   height="563"
                   loading="lazy"
@@ -1556,8 +1595,8 @@
             <article class="service-card">
               <figure class="service-card-image">
                 <img
-                  src="https://images.unsplash.com/photo-1754321871548-61bdbc6f1506?auto=format&fit=crop&w=900&q=82"
-                  alt="Tree care equipment staged below large trees"
+                  src="assets/large-oak-pruning.webp"
+                  alt="Pruned tree with raised canopy in a residential neighborhood"
                   width="900"
                   height="563"
                   loading="lazy"
@@ -1574,8 +1613,8 @@
             <article class="service-card">
               <figure class="service-card-image">
                 <img
-                  src="https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=900&q=82"
-                  alt="Tree service cleanup work after trimming"
+                  src="assets/trimming-near-homes.webp"
+                  alt="Tree climber trimming a large trunk beside a home"
                   width="900"
                   height="563"
                   loading="lazy"
@@ -1712,8 +1751,8 @@
           <div class="gallery-grid">
             <figure class="gallery-item">
               <img
-                src="https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=1200&q=82"
-                alt="Tree crew trimming branches over a brick home"
+                src="assets/trimming-near-homes.webp"
+                alt="Tree climber trimming a large trunk beside a home"
                 width="1200"
                 height="900"
                 loading="lazy"
@@ -1723,8 +1762,8 @@
             </figure>
             <figure class="gallery-item">
               <img
-                src="https://images.unsplash.com/photo-1754321871548-61bdbc6f1506?auto=format&fit=crop&w=900&q=82"
-                alt="Arborist ladder setup beneath large oak trees"
+                src="assets/large-oak-pruning.webp"
+                alt="Pruned tree with raised canopy in a residential neighborhood"
                 width="900"
                 height="675"
                 loading="lazy"
@@ -1743,6 +1782,53 @@
               />
               <figcaption class="gallery-caption">Same-day stump grinding</figcaption>
             </figure>
+          </div>
+          <div class="video-gallery" aria-label="Tree service videos">
+            <h3>Jobsite videos</h3>
+            <div class="video-grid">
+              <figure class="video-card">
+                <video controls preload="metadata" playsinline aria-label="Tree service crew on site video">
+                  <source src="assets/videos/tree-work-1.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <figcaption>Tree service crew on site</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video controls preload="metadata" playsinline aria-label="Tree removal footage video">
+                  <source src="assets/videos/tree-work-2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <figcaption>Tree removal footage</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video controls preload="metadata" playsinline aria-label="On-site tree work video">
+                  <source src="assets/videos/tree-work-3.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <figcaption>On-site tree work</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video controls preload="metadata" playsinline aria-label="Residential tree service video">
+                  <source src="assets/videos/tree-work-4.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <figcaption>Residential tree service</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video controls preload="metadata" playsinline aria-label="Tree cutting and cleanup video">
+                  <source src="assets/videos/tree-work-5.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <figcaption>Tree cutting and cleanup</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video controls preload="metadata" playsinline aria-label="DFW tree care work video">
+                  <source src="assets/videos/tree-work-6.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <figcaption>DFW tree care work</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
@@ -2085,7 +2171,7 @@
             "sameAs": ["https://www.facebook.com/people/Best-Tree-Service-DFW/61560664231263/"],
             "image": [
               "https://images.unsplash.com/photo-1754321860056-ca7254d5e7ac?auto=format&fit=crop&w=1600&q=85",
-              "https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=1200&q=82",
+              "https://www.besttreeservicedfw.com/assets/trimming-near-homes.webp",
               "https://www.besttreeservicedfw.com/assets/stump-grinding.jpg"
             ],
             "address": {
