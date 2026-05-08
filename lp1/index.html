@@ -921,7 +921,9 @@
         });
       });
 
-      form.addEventListener("submit", (event) => {
+      const leadWebhookUrl = "https://api.strongclicks.io/webhook/best-tree-service-form";
+
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         if (!form.checkValidity()) {
@@ -932,6 +934,7 @@
         const data = new FormData(form);
         const leadName = cleanMailHeader(data.get("Name") || "Website Lead");
         const leadEmail = cleanMailHeader(data.get("Email") || "");
+        const submitButton = form.querySelector('button[type="submit"]');
         const lines = [
           "New lead from Best Tree Service DFW:",
           "",
@@ -946,11 +949,46 @@
           data.get("Message") || ""
         ];
 
-        const subject = encodeURIComponent(`New Lead! ${leadName}`);
-        const body = encodeURIComponent(lines.join("\n"));
-        const replyTo = leadEmail ? `&reply-to=${encodeURIComponent(leadEmail)}` : "";
-        status.textContent = "Opening your email app so the request can be sent.";
-        window.location.href = `mailto:Besttreeservicedfw@gmail.com?subject=${subject}&body=${body}${replyTo}`;
+        const payload = {
+          site: "Best Tree Service DFW",
+          formId: form.id || "",
+          pageTitle: document.title,
+          pageUrl: window.location.href,
+          submittedAt: new Date().toISOString(),
+          subject: `New Lead! ${leadName}`,
+          replyTo: leadEmail,
+          recipient: "Besttreeservicedfw@gmail.com",
+          fields: Object.fromEntries(data.entries()),
+          emailBody: lines.join("\n")
+        };
+
+        status.textContent = "Sending your request...";
+        if (submitButton) {
+          submitButton.disabled = true;
+        }
+
+        try {
+          const response = await fetch(leadWebhookUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error("Lead submission failed");
+          }
+
+          status.textContent = "Thanks, your request was sent. We will follow up soon.";
+        } catch (error) {
+          status.textContent = "Sorry, the form could not be sent. Please call (214) 944-7415.";
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+          }
+        }
       });
 
       function cleanMailHeader(value) {
