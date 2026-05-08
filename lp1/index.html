@@ -789,6 +789,10 @@
               <input id="phone" name="Phone" type="tel" autocomplete="tel" required />
             </div>
             <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="Email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
               <label for="address">Address or Area</label>
               <input id="address" name="Address" autocomplete="street-address" />
             </div>
@@ -929,24 +933,32 @@
         }
 
         const data = new FormData(form);
+        const leadName = cleanMailHeader(data.get("Name") || "Website Lead");
+        const leadEmail = cleanMailHeader(data.get("Email") || "");
         const lines = [
-          "New paid landing page quote request:",
+          "New lead from Best Tree Service DFW:",
           "",
           `Service: ${data.get("Service") || ""}`,
           `Timing: ${data.get("Timing") || ""}`,
           `Name: ${data.get("Name") || ""}`,
           `Phone: ${data.get("Phone") || ""}`,
+          `Email: ${data.get("Email") || ""}`,
           `Address or area: ${data.get("Address") || ""}`,
           "",
           "Message:",
           data.get("Message") || ""
         ];
 
-        const subject = encodeURIComponent("Fast quote request - Best Tree Service DFW");
+        const subject = encodeURIComponent(`New Lead! ${leadName}`);
         const body = encodeURIComponent(lines.join("\n"));
+        const replyTo = leadEmail ? `&reply-to=${encodeURIComponent(leadEmail)}` : "";
         status.textContent = "Opening your email app so the request can be sent.";
-        window.location.href = `mailto:Besttreeservicedfw@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:Besttreeservicedfw@gmail.com?subject=${subject}&body=${body}${replyTo}`;
       });
+
+      function cleanMailHeader(value) {
+        return String(value).replace(/[\r\n]+/g, " ").trim();
+      }
     </script>
   </body>
 </html>

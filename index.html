@@ -8,7 +8,7 @@
         name="description"
       content="Licensed and insured tree removal, trimming, stump grinding, and emergency tree service across Dallas-Fort Worth. Call for a free estimate."
     />
-    <meta name="robots" content="noindex,nofollow,noarchive,noimageindex" />
+    <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#006936" />
     <meta name="application-name" content="Best Tree Service DFW" />
     <meta name="apple-mobile-web-app-title" content="Best Tree Service DFW" />
@@ -1430,7 +1430,7 @@
               </div>
               <div class="field">
                 <label for="email">Email</label>
-                <input id="email" name="Email" type="email" autocomplete="email" />
+                <input id="email" name="Email" type="email" autocomplete="email" required />
               </div>
               <div class="field">
                 <label for="address">Address</label>
@@ -1448,7 +1448,6 @@
                   <option>Tree trimming and thinning</option>
                   <option>Stump removal / grinding</option>
                   <option>Tree and brush clearing</option>
-                  <option>Fence installation or repair</option>
                   <option>Emergency storm cleanup</option>
                   <option>Commercial tree care</option>
                   <option>Not sure yet</option>
@@ -1597,7 +1596,6 @@
             <li>Tree cutting</li>
             <li>Tree pruning</li>
             <li>Tree and brush clearing</li>
-            <li>Fence installation and repair</li>
           </ul>
 
           <div class="service-detail-grid" aria-label="Detailed tree service information">
@@ -1893,7 +1891,7 @@
               </div>
               <div class="field">
                 <label for="email-faq">Email</label>
-                <input id="email-faq" name="Email" type="email" autocomplete="email" />
+                <input id="email-faq" name="Email" type="email" autocomplete="email" required />
               </div>
               <div class="field">
                 <label for="address-faq">Address</label>
@@ -1911,7 +1909,6 @@
                   <option>Tree trimming and thinning</option>
                   <option>Stump removal / grinding</option>
                   <option>Tree and brush clearing</option>
-                  <option>Fence installation or repair</option>
                   <option>Emergency storm cleanup</option>
                   <option>Commercial tree care</option>
                   <option>Not sure yet</option>
@@ -2008,6 +2005,70 @@
               "caption": "Professional tree service crew removing a tree safely"
             },
             "inLanguage": "en-US"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://www.besttreeservicedfw.com/#faq",
+            "url": "https://www.besttreeservicedfw.com/#faq",
+            "inLanguage": "en-US",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Do you offer 24/7 emergency tree removal?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Call (214) 944-7415 for storm damage, leaning trees, or urgent hazards."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What factors determine the cost of tree removal?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Pricing is influenced by tree size, location, access, risk, and the complexity of the surrounding environment. Contact us for a personalized quote."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are you licensed and insured?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Best Tree Service DFW carries a $2 million liability policy and can provide each homeowner with a personalized certificate of insurance for their records."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you remove trees near power lines?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The crew coordinates with utility companies when needed and follows rigorous safety standards for tree work near power lines."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How frequently should trees be trimmed?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The ideal trimming frequency is usually every 1-3 years, depending on tree species, location, growth rate, and health. The estimator can recommend a schedule for your property."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What payment options do you accept?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Flexible payment options include cash, check, credit cards, Venmo, and Zelle."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How deep do you grind stumps?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Standard stump grinding is typically 4-6 inches below ground level, with adjustments available based on your landscaping needs."
+                }
+              }
+            ]
           },
           {
             "@type": "HomeAndConstructionBusiness",
@@ -2176,15 +2237,6 @@
                     "serviceType": "Commercial tree service",
                     "areaServed": "Dallas-Fort Worth Metroplex"
                   }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Fence Installation and Repair",
-                    "serviceType": "Fence installation and repair",
-                    "areaServed": "Dallas-Fort Worth Metroplex"
-                  }
                 }
               ]
             }
@@ -2220,8 +2272,10 @@
 
           const status = form.querySelector(".form-status");
           const data = new FormData(form);
+          const leadName = cleanMailHeader(data.get("Name") || "Website Lead");
+          const leadEmail = cleanMailHeader(data.get("Email") || "");
           const lines = [
-            "New estimate request from the website:",
+            "New lead from Best Tree Service DFW:",
             "",
             `Name: ${data.get("Name") || ""}`,
             `Phone: ${data.get("Phone") || ""}`,
@@ -2233,12 +2287,17 @@
             data.get("Message") || ""
           ];
 
-          const subject = encodeURIComponent("Free estimate request - Best Tree Service DFW");
+          const subject = encodeURIComponent(`New Lead! ${leadName}`);
           const body = encodeURIComponent(lines.join("\n"));
+          const replyTo = leadEmail ? `&reply-to=${encodeURIComponent(leadEmail)}` : "";
           status.textContent = "Opening your email app so you can send the request.";
-          window.location.href = `mailto:Besttreeservicedfw@gmail.com?subject=${subject}&body=${body}`;
+          window.location.href = `mailto:Besttreeservicedfw@gmail.com?subject=${subject}&body=${body}${replyTo}`;
         });
       });
+
+      function cleanMailHeader(value) {
+        return String(value).replace(/[\r\n]+/g, " ").trim();
+      }
     </script>
   </body>
 </html>
