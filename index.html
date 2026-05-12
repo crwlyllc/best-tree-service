@@ -2359,6 +2359,7 @@
       });
 
       const leadWebhookUrl = "https://api.strongclicks.io/webhook/best-tree-service-form";
+      const thankYouUrl = "/thank-you";
 
       document.querySelectorAll(".lead-form").forEach((form) => {
         form.addEventListener("submit", async (event) => {
@@ -2420,7 +2421,7 @@
             }
 
             status.textContent = "Thanks, your request was sent. We will follow up soon.";
-            form.reset();
+            window.location.assign(thankYouUrl);
           } catch (error) {
             status.textContent = "Sorry, the form could not be sent. Please call (214) 944-7415.";
           } finally {
